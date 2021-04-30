@@ -1,10 +1,11 @@
 import React from "react";
-import Products from "./components/Products/Products";
+import {Navbar, Products} from "./components";
 
 class App extends React.Component{
   render(){
     return (
       <div>
+        <Navbar/>
         <Products/>
       </div>
     );
