@@ -1,6 +1,15 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import Product from "../Products/Product/Product";
+import { withStyles } from "@material-ui/core";
+
+const styles = (theme) => ({
+  toolbar: theme.mixins.toolbar,
+  content: {
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
+  },
+});
 
 const products = [
   {
@@ -21,17 +30,20 @@ const products = [
 
 class Products extends React.Component {
   render() {
+    const { classes } = this.props;
     return (
-      <Grid container justify="center" spacing={4}>
-        {/*creating grid container for product item */}
-        {products.map((product) => (
-          <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
-            <Product product={product} />
-          </Grid>
-        ))}
-      </Grid>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Grid container justify="center" spacing={4}>
+          {products.map((product) => (
+            <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+              <Product product={product} />
+            </Grid>
+          ))}
+        </Grid>
+      </main>
     );
   }
 }
 
-export default Products;
+export default withStyles(styles)(Products);
