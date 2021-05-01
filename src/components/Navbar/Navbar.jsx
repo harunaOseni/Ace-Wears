@@ -99,7 +99,7 @@ class Navbar extends React.Component {
               height="25px"
               className={classes.image}
             />
-            Ecommerce-Template
+            Ecommerce-Guide
           </Typography>
           <div className={classes.grow} />
           <div className={classes.button}>
