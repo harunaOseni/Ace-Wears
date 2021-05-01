@@ -11,25 +11,9 @@ const styles = (theme) => ({
   },
 });
 
-const products = [
-  {
-    id: 1,
-    name: "Shoes",
-    description: "Running shoes.",
-    price: "$5",
-  },
-  {
-    id: 2,
-    name: "Macbook",
-    description: "Apple macbook.",
-    price: "$10",
-    url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW7D3rHr-7CmjFZ3SfRCJFytTNScbjpTbGE-F5hIx9pwuRom-MsrYc19kbQP0yvrUzZUmd_y0&usqp=CAc",
-  },
-];
-
 class Products extends React.Component {
   render() {
+    const { products } = this.props;    
     const { classes } = this.props;
     return (
       <main className={classes.content}>
