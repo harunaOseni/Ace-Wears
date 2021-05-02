@@ -1,28 +1,40 @@
-import React, {useState, useEffect} from "react";
-import {Navbar, Products} from "./components";
-import {commerce} from "./lib/commerce";
+import React from "react";
+import { Navbar, Products } from "./components";
+import { commerce } from "./lib/commerce";
 
-const App = () => {
-  const [products, setProducts] = useState([]);
-
-  const fetchProducts = async () => {
-    const {data} = await commerce.products.list(); 
-
-    setProducts(data); 
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+      cart: {}
+    };
+    this.fetchCart = this.fetchCart.bind(this);
   }
 
+  async componentDidMount() {
+    const { data } = await commerce.products.list();
+    this.setState({ products: data });
+    this.fetchCart()
+  }
 
-  useEffect(() => {
-    fetchProducts();
-  }, []); 
+  fetchCart() {
+    commerce.cart.retrieve().then((cart) => {
+      this.setState({ cart });
+    }).catch((error) => {
+      console.error('There was an error fetching the cart', error);
+    });
+  }
 
-
-  return (
-    <div>
-      <Navbar/>
-      <Products products={products}/>
-    </div>
-  );
+  render() {
+    console.log(this.state.cart);
+    return (
+      <div>
+        <Navbar />
+        <Products products={this.state.products} />
+      </div>
+    );
+  }
 }
 
 export default App;
