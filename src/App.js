@@ -7,31 +7,46 @@ class App extends React.Component {
     super(props);
     this.state = {
       products: [],
-      cart: {}
+      cart: {},
     };
     this.fetchCart = this.fetchCart.bind(this);
+    this.handleAddToCart = this.handleAddToCart.bind(this);
   }
 
   async componentDidMount() {
     const { data } = await commerce.products.list();
     this.setState({ products: data });
-    this.fetchCart()
+    this.fetchCart();
   }
 
   fetchCart() {
-    commerce.cart.retrieve().then((cart) => {
-      this.setState({ cart });
-    }).catch((error) => {
-      console.error('There was an error fetching the cart', error);
-    });
+    commerce.cart
+      .retrieve()
+      .then((cart) => {
+        this.setState({ cart });
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the cart", error);
+      });
+  }
+
+  handleAddToCart(productId, quantity) {
+    commerce.cart
+      .add(productId, quantity)
+      .then((item) => {
+        this.setState({ cart: item.cart });
+      })
+      .catch((error) => {
+        console.error("There was an error adding the item to the cart", error);
+      });
   }
 
   render() {
     console.log(this.state.cart);
     return (
       <div>
-        <Navbar />
-        <Products products={this.state.products} />
+        <Navbar totalItemsInCart={this.state.cart.total_items} /> 
+        <Products products={this.state.products} addToCart={this.handleAddToCart} />
       </div>
     );
   }

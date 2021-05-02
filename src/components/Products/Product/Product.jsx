@@ -34,6 +34,7 @@ class Product extends React.Component {
   render() {
     const { product } = this.props;
     const { classes } = this.props;
+    const { addToCart } = this.props;
 
     return (
       <Card className={classes.root}>
@@ -48,7 +49,7 @@ class Product extends React.Component {
           <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="body2" color="textSecondary" />
         </CardContent>
         <CardActions disableSpacing className={classes.cardActions}>
-          <IconButton arial-label="Add to Cart">
+          <IconButton arial-label="Add to Cart" onClick={()=>{addToCart(product.id, 1)}}>
             <AddShoppingCart />
           </IconButton>
         </CardActions>

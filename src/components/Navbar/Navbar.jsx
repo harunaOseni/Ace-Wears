@@ -89,6 +89,7 @@ const styles = theme => ({
 class Navbar extends React.Component {
   render() {
     const { classes } = this.props;
+    const {totalItemsInCart} = this.props; 
     return (
       <AppBar postion="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
@@ -104,7 +105,7 @@ class Navbar extends React.Component {
           <div className={classes.grow} />
           <div className={classes.button}>
             <IconButton aria-label="Show cart items" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={totalItemsInCart} color="secondary">
                 <ShoppingCart /> 
               </Badge>
             </IconButton>
