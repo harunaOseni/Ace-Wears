@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
 \
-Note: Everything you need to get started with understanding the source code are below in the "understanding source code section"
+Note: Be sure to read to commerce js docs to understand more!
 
 ## Available React Scripts For Software
 
@@ -30,5 +30,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-# understanding source code
