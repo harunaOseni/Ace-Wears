@@ -31,7 +31,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `Steps`
+### `Building Process`
 ​ Navbar \
 ​ Commerce Products \
 ​ Add to Cart \
@@ -48,4 +48,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ​ Mobile Responsiveness \
 ​ Bug Fixes \
 ​ No Credit Card Fix \
-​ Deployment \
+​ Deployment 
