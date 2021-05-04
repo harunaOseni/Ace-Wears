@@ -30,3 +30,22 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `Steps`
+​ Navbar
+​ Commerce Products
+​ Add to Cart
+​ Cart Layout
+​ React Router
+​ Cart Buttons
+​ Checkout
+​ Address Form
+​ Fetch Countries
+​ Fetch Subdivisions
+​ Review
+​ Payment Form & Stripe
+​ Integration
+​ Mobile Responsiveness
+​ Bug Fixes
+​ No Credit Card Fix
+​ Deployment
