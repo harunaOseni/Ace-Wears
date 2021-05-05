@@ -12,6 +12,8 @@ import { ShoppingCart } from "@material-ui/icons";
 import logo from "../../assets/commerce.png";
 import {withStyles} from "@material-ui/core";
 import { fade } from '@material-ui/core';
+import {Link, withRouter} from "react-router-dom";
+import PropTypes from "prop-types";
 // The App Bar === Navbar
 //Toolbar === content contained in the navBar
 //Badge generates a small badge to the top-right and also holds content.
@@ -87,13 +89,18 @@ const styles = theme => ({
 
 
 class Navbar extends React.Component {
+  static propTypes = {
+    location: PropTypes.object.isRequired
+  };
   render() {
     const { classes } = this.props;
-    const {totalItemsInCart} = this.props; 
+    const {totalItemsInCart} = this.props;
+    const {location} = this.props;
+    console.log(location); 
     return (
       <AppBar postion="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography variant="h6" className={classes.title} color="inherit">
+          <Typography   component={Link} to="/" variant="h6" className={classes.title} color="inherit">
             <img
               src={logo}
               alt="Ecommerce_Template"
@@ -104,7 +111,7 @@ class Navbar extends React.Component {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.button}>
-            <IconButton aria-label="Show cart items" color="inherit">
+            <IconButton  component={Link} to="/cart" aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItemsInCart} color="secondary">
                 <ShoppingCart /> 
               </Badge>
@@ -115,4 +122,5 @@ class Navbar extends React.Component {
     );
   }
 }
-export default withStyles(styles)(Navbar);
+export const ShowTheLocationWithRouter = withRouter(Navbar);
+export default withStyles(styles)(Navbar); 

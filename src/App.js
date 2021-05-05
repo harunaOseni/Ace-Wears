@@ -1,6 +1,7 @@
 import React from "react";
-import { Navbar, Products, Cart} from "./components";
+import { Navbar, Products, Cart } from "./components";
 import { commerce } from "./lib/commerce";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -44,11 +45,24 @@ class App extends React.Component {
   render() {
     console.log(this.state.cart);
     return (
-      <div>
-        <Navbar totalItemsInCart={this.state.cart.total_items} /> 
-        {/* <Products products={this.state.products} addToCart={this.handleAddToCart} /> */}
-        <Cart cart={this.state.cart}/> 
-      </div>
+      <Router>
+        <div>
+          <Route component={Navbar}>
+            <Navbar totalItemsInCart={this.state.cart.total_items} />
+          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Products
+                products={this.state.products}
+                addToCart={this.handleAddToCart}
+              />
+            </Route>
+            <Route exact path="/cart">
+              <Cart cart={this.state.cart} />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }

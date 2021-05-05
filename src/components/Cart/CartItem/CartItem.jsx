@@ -44,7 +44,7 @@ class CartItem extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
-          <div className={classes.buttons}>
+          <div className={classes.buttons} style={{ flex: 1 }}>
             <Button type="button" size="small">
               -
             </Button>
@@ -53,7 +53,6 @@ class CartItem extends React.Component {
               +
             </Button>
           </div>
-          <div className={classes.buttons}>
           <Button
             variant="contained"
             type="button"
@@ -61,7 +60,6 @@ class CartItem extends React.Component {
           >
             Remove
           </Button>
-          </div>
         </CardActions>
       </Card>
     );
