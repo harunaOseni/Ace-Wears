@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Products, Cart } from "./components";
 import { commerce } from "./lib/commerce";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -43,13 +43,12 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.cart);
+    // console.log(this.state.cart);
+    // console.log(window.location.pathname);
     return (
       <Router>
         <div>
-          <Route component={Navbar}>
             <Navbar totalItemsInCart={this.state.cart.total_items} />
-          </Route>
           <Switch>
             <Route exact path="/">
               <Products
