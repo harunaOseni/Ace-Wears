@@ -12,13 +12,17 @@ class App extends React.Component {
     };
     this.fetchCart = this.fetchCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
-  }
+    this.handleUpdateCartQuantity = this.handleUpdateCartQuantity.bind(this);
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
+    this.handleEmptyCart = this.handleEmptyCart.bind(this);
+  };
 
   async componentDidMount() {
     const { data } = await commerce.products.list();
     this.setState({ products: data });
     this.fetchCart();
-  }
+
+  };
 
   fetchCart() {
     commerce.cart
@@ -29,7 +33,7 @@ class App extends React.Component {
       .catch((error) => {
         console.error("There was an error fetching the cart", error);
       });
-  }
+  };
 
   handleAddToCart(productId, quantity) {
     commerce.cart
@@ -40,6 +44,38 @@ class App extends React.Component {
       .catch((error) => {
         console.error("There was an error adding the item to the cart", error);
       });
+  }
+
+  handleUpdateCartQuantity(productId, quantity){
+    commerce.cart.update(productId, quantity)
+    .then((response) => {
+      this.setState({ cart: response.cart });
+    })
+    .catch((error) => {
+      console.error("There was an error in updating items in the Cart!", error);
+    });
+  }
+
+  handleRemoveFromCart(productId){
+    commerce.cart
+    .remove(productId)
+    .then((response) => {
+      this.setState({ cart: response.cart });
+    })
+    .catch((error) => {
+      console.error("There was an error removing items from cart", error);
+    });
+  }
+
+  handleEmptyCart(){
+    commerce.cart
+    .empty()
+    .then((response) => {
+      this.setState({ cart: response.cart });
+    })
+    .catch((error) => {
+      console.error("There was an error emptying the cart", error);
+    });
   }
 
   render() {
@@ -57,7 +93,7 @@ class App extends React.Component {
               />
             </Route>
             <Route exact path="/cart">
-              <Cart cart={this.state.cart} />
+              <Cart cart={this.state.cart} removeFromCart={this.handleRemoveFromCart} emptyCart={this.handleEmptyCart} updateQuantity={this.handleUpdateCartQuantity} />
             </Route>
           </Switch>
         </div>

@@ -13,7 +13,7 @@ import logo from "../../assets/commerce.png";
 import { withStyles } from "@material-ui/core";
 import { fade } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router"; 
 // The App Bar === Navbar
 //Toolbar === content contained in the navBar
 //Badge generates a small badge to the top-right and also holds content.

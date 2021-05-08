@@ -29,7 +29,9 @@ const styles = (theme) => ({
 class CartItem extends React.Component {
   render() {
     const { item } = this.props;
-    const { classes } = this.props;
+    const { classes } = this.props; 
+    const {removeFromCart} = this.props;
+    const {updateCartQuantity}  = this.props;
     return (
       <Card className="cart-item">
         <CardMedia
@@ -45,11 +47,11 @@ class CartItem extends React.Component {
         </CardContent>
         <CardActions className={classes.cardActions}>
           <div className={classes.buttons} style={{ flex: 1 }}>
-            <Button type="button" size="small">
+            <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity - 1)}>
               -
             </Button>
             <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
-            <Button type="button" size="small">
+            <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity + 1)}>
               +
             </Button>
           </div>
@@ -57,6 +59,7 @@ class CartItem extends React.Component {
             variant="contained"
             type="button"
             color="secondary"
+            onClick={() => removeFromCart(item.id)} 
           >
             Remove
           </Button>
