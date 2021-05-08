@@ -47,7 +47,7 @@ class App extends React.Component {
   }
 
   handleUpdateCartQuantity(productId, quantity){
-    commerce.cart.update(productId, quantity)
+    commerce.cart.update(productId, {quantity})
     .then((response) => {
       this.setState({ cart: response.cart });
     })
