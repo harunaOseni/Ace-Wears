@@ -13,7 +13,8 @@ import logo from "../../assets/commerce.png";
 import { withStyles } from "@material-ui/core";
 import { fade } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router"; 
+import { withRouter } from "react-router";
+import { init } from "ityped";
 // The App Bar === Navbar
 //Toolbar === content contained in the navBar
 //Badge generates a small badge to the top-right and also holds content.
@@ -35,6 +36,7 @@ const styles = (theme) => ({
     alignItems: "center",
     display: "flex",
     textDecoration: "none",
+    fontFamily: "Helvetica",
   },
   image: {
     marginRight: "10px",
@@ -87,27 +89,36 @@ const styles = (theme) => ({
 });
 
 class Navbar extends React.Component {
+  componentDidMount() {
+    const myElement = document.querySelector("#myElement");
+    init(myElement, {
+      showCursor: false,
+      strings: ["Welcome To Ace Wears", "The Only Wears That Ace Your Day!"],
+    });
+  }
+
   render() {
     const { classes } = this.props;
     const { totalItemsInCart } = this.props;
-    const {location} = this.props;
+    const { location } = this.props;
     return (
       <AppBar postion="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
+          <img
+            src={logo}
+            alt="Ace Wears Logo"
+            height="25px"
+            className={classes.image}
+          />
           <Typography
             component={Link}
             to="/"
             variant="h6"
             className={classes.title}
             color="inherit"
+            fontWeight="fontWeightBold"
           >
-            <img
-              src={logo}
-              alt="Ecommerce_Template"
-              height="25px"
-              className={classes.image}
-            />
-            Ecommerce-Guide
+            Ace Wears
           </Typography>
           <div className={classes.grow} />
           {location.pathname === "/" ? (
@@ -130,5 +141,5 @@ class Navbar extends React.Component {
   }
 }
 
-const styleHOC =  withStyles(styles)(Navbar);
+const styleHOC = withStyles(styles)(Navbar);
 export default withRouter(styleHOC);
