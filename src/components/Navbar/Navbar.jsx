@@ -104,12 +104,6 @@ class Navbar extends React.Component {
     return (
       <AppBar postion="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <img
-            src={logo}
-            alt="Ace Wears Logo"
-            height="25px"
-            className={classes.image}
-          />
           <Typography
             component={Link}
             to="/"
@@ -118,7 +112,13 @@ class Navbar extends React.Component {
             color="inherit"
             fontWeight="fontWeightBold"
           >
-            Ace Wears
+            <img
+              src={logo}
+              alt="Ace Wears Logo"
+              height="25px"
+              className={classes.image}
+            />
+            AceWears
           </Typography>
           <div className={classes.grow} />
           {location.pathname === "/" ? (
