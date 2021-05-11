@@ -110,7 +110,7 @@ class Navbar extends React.Component {
             variant="h6"
             className={classes.title}
             color="inherit"
-            fontWeight="fontWeightBold"
+            style={{fontWeight:600}}
           >
             <img
               src={logo}
