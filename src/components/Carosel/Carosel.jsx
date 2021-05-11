@@ -1,20 +1,23 @@
 import { Carousel } from "antd";
-import React from "react";
+import 'antd/dist/antd.css';
+import React from "react"; 
 
 
 const contentStyle = {
-  height: "160px",
+  height: "500px",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
   background: "#364d79",
 };
 
+
 class Carosel extends React.Component {
   render() {
     return (
       <Carousel autoplay>
         <div>
+
           <h3 style={contentStyle}>1</h3>
         </div>
         <div>

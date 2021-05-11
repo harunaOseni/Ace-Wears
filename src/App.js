@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Products, Cart } from "./components";
+import { Navbar, Products, Cart, Carosel } from "./components";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
@@ -85,6 +85,7 @@ class App extends React.Component {
       <Router>
         <div>
             <Navbar totalItemsInCart={this.state.cart.total_items} />
+            <Carosel />
           <Switch>
             <Route exact path="/">
               <Products
