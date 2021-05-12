@@ -14,7 +14,6 @@ import { withStyles } from "@material-ui/core";
 import { fade } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
-import { init } from "ityped";
 // The App Bar === Navbar
 //Toolbar === content contained in the navBar
 //Badge generates a small badge to the top-right and also holds content.
@@ -37,6 +36,9 @@ const styles = (theme) => ({
     display: "flex",
     textDecoration: "none",
     fontFamily: "Helvetica",
+    "&:hover": {
+      color: "black"
+    }
   },
   image: {
     marginRight: "10px",
@@ -73,6 +75,13 @@ const styles = (theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+
+  button: {
+    "&:hover": {
+      color: "black"
+    }
+  }, 
+  
   inputRoot: {
     color: "inherit",
   },
@@ -89,13 +98,6 @@ const styles = (theme) => ({
 });
 
 class Navbar extends React.Component {
-  componentDidMount() {
-    const myElement = document.querySelector("#myElement");
-    init(myElement, {
-      showCursor: false,
-      strings: ["Welcome To Ace Wears", "The Only Wears That Ace Your Day!"],
-    });
-  }
 
   render() {
     const { classes } = this.props;
@@ -110,7 +112,9 @@ class Navbar extends React.Component {
             variant="h6"
             className={classes.title}
             color="inherit"
-            style={{fontWeight:600}}
+            style={{
+              fontWeight: 600
+            }}
           >
             <img
               src={logo}
@@ -122,19 +126,20 @@ class Navbar extends React.Component {
           </Typography>
           <div className={classes.grow} />
           {location.pathname === "/" ? (
-            <div className={classes.button}>
+            <div>
               <IconButton
                 component={Link}
                 to="/cart"
                 aria-label="Show cart items"
                 color="inherit"
+                className={classes.button}
               >
                 <Badge badgeContent={totalItemsInCart} color="secondary">
                   <ShoppingCart />
                 </Badge>
               </IconButton>
             </div>
-          ) : null}
+          ) : ""}
         </Toolbar>
       </AppBar>
     );

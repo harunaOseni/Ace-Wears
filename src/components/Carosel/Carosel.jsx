@@ -5,40 +5,73 @@ import Olamide01 from "../../assets/olamide01.jpg";
 import Drake01 from "../../assets/drake01.jpg";
 import Burna01 from "../../assets/odogwu  03.jpg";
 import Burna02 from "../../assets/burna-boy-1.jpg";
+import { withStyles } from "@material-ui/styles";
+import { init } from "ityped";
+
+const styles = (theme) => ({
+  carouselContainer: {
+    position: "relative",
+    textAlign: "center",
+    color: "white",
+  },
+  textCSS: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  },
+  imagesCSS: {
+    objectFit: "fill",
+    width: "100%",
+    marginTop: "55px",
+  },
+});
 
 class Carosel extends React.Component {
+  componentDidMount() {
+    const myElement = document.querySelector("#myElement");
+    init(myElement, {
+      showCursor: false,
+      strings: ["Welcome To Ace Wears", "The Only Wears That Ace Your Day!"],
+    });
+  }
   render() {
+    const { classes } = this.props;
+
     return (
       <Carousel autoplay>
-        <div>
+        <div className={classes.carouselContainer}>
           <img
             src={Olamide01}
             alt="carouselImage"
-            style={{objectFit:"fill", width: "100vw", marginTop: "60px"}}
+            className={classes.imagesCSS}
             height={450}
           />
         </div>
+
         <div>
-        <img
+          <img
             src={Drake01}
             alt="carouselImage"
-            style={{objectFit:"fill", width: "100vw", marginTop: "60px"}}
+            className={classes.imagesCSS}
             height={450}
           />
         </div>
+
         <div>
-        <img
+          <img
             src={Burna01}
             alt="carouselImage"
-            style={{objectFit:"fill", width: "100vw", marginTop: "60px"}}
+            className={classes.imagesCSS}
             height={450}
           />
         </div>
+
         <div>
-        <img
+          <img
             src={Burna02}
             alt="carouselImage"
-            style={{objectFit:"fill", width: "100vw", marginTop: "60px"}}
+            className={classes.imagesCSS}
             height={450}
           />
         </div>
@@ -47,4 +80,4 @@ class Carosel extends React.Component {
   }
 }
 
-export default Carosel;
+export default withStyles(styles)(Carosel);
