@@ -6,7 +6,6 @@ import Drake01 from "../../assets/drake01.jpg";
 import Burna01 from "../../assets/odogwu  03.jpg";
 import Burna02 from "../../assets/burna-boy-1.jpg";
 import { withStyles } from "@material-ui/styles";
-import { init } from "ityped";
 
 const styles = (theme) => ({
   carouselContainer: {
@@ -19,6 +18,7 @@ const styles = (theme) => ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+    height: "400px",
   },
   imagesCSS: {
     objectFit: "fill",
@@ -28,13 +28,6 @@ const styles = (theme) => ({
 });
 
 class Carosel extends React.Component {
-  componentDidMount() {
-    const myElement = document.querySelector("#myElement");
-    init(myElement, {
-      showCursor: false,
-      strings: ["Welcome To Ace Wears", "The Only Wears That Ace Your Day!"],
-    });
-  }
   render() {
     const { classes } = this.props;
 
