@@ -6,6 +6,7 @@ import Drake01 from "../../assets/drake01.jpg";
 import Burna01 from "../../assets/odogwu  03.jpg";
 import Burna02 from "../../assets/burna-boy-1.jpg";
 import { withStyles } from "@material-ui/styles";
+import { animateText, samples } from "react-punch";
 
 const styles = (theme) => ({
   carouselContainer: {
@@ -15,10 +16,11 @@ const styles = (theme) => ({
   },
   textCSS: {
     position: "absolute",
-    top: "50%",
+    top: "85%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     height: "400px",
+    fontSize: "50px"
   },
   imagesCSS: {
     objectFit: "fill",
@@ -34,6 +36,9 @@ class Carosel extends React.Component {
     return (
       <Carousel autoplay>
         <div className={classes.carouselContainer}>
+          <b className={classes.textCSS}>
+            {animateText("Welcome",samples.other.drawborder())}
+          </b>
           <img
             src={Olamide01}
             alt="carouselImage"

@@ -7,7 +7,7 @@ const styles = (theme) => ({
   toolbar: theme.mixins.toolbar,
   content: {
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2.8),
   },
 });
 
