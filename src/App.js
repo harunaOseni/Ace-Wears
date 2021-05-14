@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Products, Cart, Carosel } from "./components";
+import { Navbar, Products, Cart, Carosel, Checkout } from "./components";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -82,8 +82,7 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.cart);
-    // console.log(window.location.pathname);
+    
     return (
       <Router>
         <div>
@@ -103,6 +102,9 @@ class App extends React.Component {
                 emptyCart={this.handleEmptyCart}
                 updateQuantity={this.handleUpdateCartQuantity}
               />
+            </Route>
+            <Route exact path="/checkout">
+              <Checkout />
             </Route>
           </Switch>
         </div>

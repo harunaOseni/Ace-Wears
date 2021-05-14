@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem/CartItem";
 
-
 const styles = (theme) => ({
   toolbar: theme.mixins.toolbar,
   title: {
@@ -37,9 +36,9 @@ class Cart extends React.Component {
   render() {
     const { cart } = this.props;
     const { classes } = this.props;
-    const {removeFromCart} = this.props;
-    const {emptyCart} = this.props;
-    const {updateQuantity} = this.props;
+    const { removeFromCart } = this.props;
+    const { emptyCart } = this.props;
+    const { updateQuantity } = this.props;
 
     if (!cart.line_items) return "Loading";
 
@@ -58,7 +57,11 @@ class Cart extends React.Component {
         <Grid container spacing={3}>
           {cart.line_items.map((item) => (
             <Grid item xs={12} sm={4} key={item.id}>
-              <CartItem item={item}  removeFromCart={removeFromCart} updateCartQuantity={updateQuantity}/>
+              <CartItem
+                item={item}
+                removeFromCart={removeFromCart}
+                updateCartQuantity={updateQuantity}
+              />
             </Grid>
           ))}
         </Grid>
@@ -83,6 +86,8 @@ class Cart extends React.Component {
               type="button"
               variant="contained"
               color="primary"
+              component={Link}
+              to="/checkout"
             >
               Checkout
             </Button>
