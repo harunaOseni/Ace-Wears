@@ -12,6 +12,8 @@ import {
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
+import AddressForm from "../AddressForm"; 
+import PaymentForm from "../PaymentForm";
 
 const styles = (theme) => ({
   appBar: {
@@ -73,9 +75,24 @@ class Checkout extends React.Component {
           activeStep: 0
       }
       this.Form = this.Form.bind(this);
+      this.Confirmation = this.Confirmation.bind(this);
+      this.nextStep = this.nextStep.bind(this);
   }
 
-  Form =()=> this.state.activeStep === 0 ? <AddressForm/> : <PaymentForm/>
+  nextStep(){
+      this.setState({
+          activeStep: this.state.activeStep + 1
+      })
+  }
+
+  Form =()=> {return this.state.activeStep === 0 ? <AddressForm/> : <PaymentForm/>}
+  Confirmation =()=> {
+      return(
+          <div>
+              This is the Confirmation page enjoy!
+          </div>
+      )
+  }
 
   render() {
     const { classes } = this.props;
@@ -94,7 +111,7 @@ class Checkout extends React.Component {
                 </Step>
               ))}
             </Stepper>
-            {this.state.activeStep === steps.length ? <Confirmation /> : this.Form}
+            {this.state.activeStep === steps.length ? this.Confirmation() : this.Form()} 
           </Paper>
         </main>
       </>
