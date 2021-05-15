@@ -10,7 +10,7 @@ import {
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import CustomTextField from "./CustomTextField";
-import { commmerce } from "../../lib/commerce";
+import { commerce } from "../../lib/commerce";
 
 const AddressForm = () => {
   const [shippingCountries, setShippingCountries] = useState([]);
@@ -20,6 +20,16 @@ const AddressForm = () => {
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState("");
   const methods = useForm();
+
+  const fetchShippingCountries = async (checkoutTokenId) => {
+    const { countries } = await commerce.services.localeListShippingCountries(
+      checkoutTokenId
+    );
+
+    setShippingCountries(countries);
+    // setShippingCountry(Object.keys(countries)[0]);
+  };
+
   return (
     <>
       <Typography variant="h6" gutterBottom>

@@ -14,6 +14,7 @@ import { Link, useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import AddressForm from "../AddressForm"; 
 import PaymentForm from "../PaymentForm";
+import {commerce} from "../../../lib/commerce";
 
 const styles = (theme) => ({
   appBar: {
