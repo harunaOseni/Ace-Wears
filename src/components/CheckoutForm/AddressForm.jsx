@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import CustomTextField from "./CustomTextField";
 import { commerce } from "../../lib/commerce";
 
-const AddressForm = () => {
+const AddressForm = ({checkoutToken}) => {
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState("");
   const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -27,8 +27,13 @@ const AddressForm = () => {
     );
 
     setShippingCountries(countries);
+    console.log(shippingCountries);
     // setShippingCountry(Object.keys(countries)[0]);
   };
+
+  useEffect(()=>{
+    fetchShippingCountries(checkoutToken.id)
+  }, [])
 
   return (
     <>

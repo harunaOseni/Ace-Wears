@@ -21,7 +21,7 @@ class App extends React.Component {
     const { data } = await commerce.products.list();
     this.setState({ products: data });
     this.fetchCart();
-  }
+  } 
 
   fetchCart() {
     commerce.cart
@@ -104,7 +104,7 @@ class App extends React.Component {
               />
             </Route>
             <Route exact path="/checkout">
-              <Checkout />
+              <Checkout cart={this.state.cart} />
             </Route>
           </Switch>
         </div>

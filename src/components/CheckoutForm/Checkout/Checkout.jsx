@@ -12,9 +12,9 @@ import {
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
-import AddressForm from "../AddressForm"; 
+import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
-import {commerce} from "../../../lib/commerce";
+import { commerce } from "../../../lib/commerce";
 
 const styles = (theme) => ({
   appBar: {
@@ -67,36 +67,59 @@ const styles = (theme) => ({
   },
 });
 
-const steps = ['Shipping address', 'Payment details'];
+const steps = ["Shipping address", "Payment details"];
 
 class Checkout extends React.Component {
-  constructor(props){
-      super(props); 
-      this.state={
-          activeStep: 0
-      }
-      this.Form = this.Form.bind(this);
-      this.Confirmation = this.Confirmation.bind(this);
-      this.nextStep = this.nextStep.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeStep: 0,
+      checkoutToken: null,
+      cart: this.props.cart,
+    };
+    this.Form = this.Form.bind(this);
+    this.Confirmation = this.Confirmation.bind(this);
+    this.nextStep = this.nextStep.bind(this);
   }
 
-  nextStep(){
-      this.setState({
-          activeStep: this.state.activeStep + 1
+  async componentDidMount() {
+    //Generating token for order capture and a great checkout experience.
+    const { cart } = this.state;
+    commerce.checkout
+      .generateToken(cart.id, { type: "cart" })
+      .then((token) => {
+        this.setState({
+          checkoutToken: token,
+        });
+        console.log(this.state.checkoutToken);
       })
+      .catch((error) => {
+        console.log("There was an error getting the Token, ", error);
+      });
   }
 
-  Form =()=> {return this.state.activeStep === 0 ? <AddressForm/> : <PaymentForm/>}
-  Confirmation =()=> {
-      return(
-          <div>
-              This is the Confirmation page enjoy!
-          </div>
-      )
+  nextStep() {
+    this.setState({
+      activeStep: this.state.activeStep + 1,
+    });
   }
+
+  Form = () => {
+    return this.state.activeStep === 0 ? (
+      <AddressForm checkoutToken={this.state.checkoutToken} />
+    ) : (
+      <PaymentForm />
+    );
+  };
+  Confirmation = () => {
+    return <div>This is the Confirmation page enjoy!</div>;
+  };
 
   render() {
     const { classes } = this.props;
+    const { checkoutToken } = this.state;
+    // console.log(this.state.cart)
+
     return (
       <>
         <div className={classes.toolbar} />
@@ -105,14 +128,19 @@ class Checkout extends React.Component {
             <Typography variant="h4" align="center">
               Checkout
             </Typography>
-            <Stepper activeStep={this.state.activeStep} className={classes.stepper}>
+            <Stepper
+              activeStep={this.state.activeStep}
+              className={classes.stepper}
+            >
               {steps.map((step) => (
                 <Step key={step}>
                   <StepLabel>{step}</StepLabel>
                 </Step>
               ))}
             </Stepper>
-            {this.state.activeStep === steps.length ? this.Confirmation() : this.Form()} 
+            {this.state.activeStep === steps.length
+              ? this.Confirmation()
+              : checkoutToken && this.Form()}
           </Paper>
         </main>
       </>
