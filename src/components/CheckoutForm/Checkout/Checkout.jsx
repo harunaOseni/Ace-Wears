@@ -79,14 +79,13 @@ class Checkout extends React.Component {
     };
     this.Form = this.Form.bind(this);
     this.Confirmation = this.Confirmation.bind(this);
-    this.nextStep = this.nextStep.bind(this);
+    // this.nextStep = this.nextStep.bind(this);
   }
 
   async componentDidMount() {
     //Generating token for order capture and a great checkout experience.
-    const { cart } = this.state;
-    commerce.checkout
-      .generateToken(cart.id, { type: "cart" })
+    await commerce.checkout
+      .generateToken(this.state.cart.id, { type: "cart" })
       .then((token) => {
         this.setState({
           checkoutToken: token,
@@ -96,13 +95,13 @@ class Checkout extends React.Component {
       .catch((error) => {
         console.log("There was an error getting the Token, ", error);
       });
-  }
+  };
 
-  nextStep() {
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-    });
-  }
+  // nextStep() {
+  //   this.setState({
+  //     activeStep: this.state.activeStep + 1,
+  //   });
+  // } 
 
   Form = () => {
     return this.state.activeStep === 0 ? (

@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import CustomTextField from "./CustomTextField";
 import { commerce } from "../../lib/commerce";
 
-const AddressForm = ({checkoutToken}) => {
+const AddressForm = ({ checkoutToken }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState("");
   const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -27,13 +27,13 @@ const AddressForm = ({checkoutToken}) => {
     );
 
     setShippingCountries(countries);
-    console.log(shippingCountries);
-    // setShippingCountry(Object.keys(countries)[0]);
+    setShippingCountry(Object.keys(countries)[0]);
+    console.log(shippingCountry);
   };
 
-  useEffect(()=>{
-    fetchShippingCountries(checkoutToken.id)
-  }, [])
+  useEffect(() => {
+    fetchShippingCountries(checkoutToken.id);
+  }, []);
 
   return (
     <>
@@ -51,12 +51,23 @@ const AddressForm = ({checkoutToken}) => {
             <CustomTextField required name="zip" label="ZIP / Postal code" />
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
-              <Select value={""} fullWidth onChange={""}>
-                <MenuItem>Select Me</MenuItem>
-                <MenuItem>Do Not Select Me!</MenuItem>
+              <Select
+                value={shippingCountry}
+                fullWidth
+                onChange={(e) => {
+                  setShippingCountry(e.target.value);
+                }}
+              >
+                {Object.entries(shippingCountries)
+                  .map(([code, name]) => ({ id: code, label: name }))
+                  .map((item) => (
+                    <MenuItem key={item.id} value={item.id}>
+                      {item.label}
+                    </MenuItem>
+                  ))} 
               </Select>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Subdivision</InputLabel>
               <Select value={""} fullWidth onChange={""}>
                 <MenuItem>Select Me</MenuItem>
@@ -69,7 +80,7 @@ const AddressForm = ({checkoutToken}) => {
                 <MenuItem>Select Me</MenuItem>
                 <MenuItem>Do Not Select Me!</MenuItem>
               </Select>
-            </Grid>
+            </Grid> */}
           </Grid>
         </form>
       </FormProvider>
