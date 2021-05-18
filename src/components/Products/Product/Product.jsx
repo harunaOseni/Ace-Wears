@@ -49,9 +49,9 @@ class Product extends React.Component {
           </div>
           <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="body2" color="textSecondary" />
         </CardContent>
-        <CardActions disableSpacing className={classes.cardActions}>
+        <CardActions  className={classes.cardActions}>
           <IconButton arial-label="Add to Cart" onClick={()=>{addToCart(product.id, 1)}}>
-            <AddShoppingCart />
+            <AddShoppingCart /> 
           </IconButton>
         </CardActions>
       </Card>
