@@ -26,6 +26,7 @@ const styles = (theme) => ({
     objectFit: "fill",
     width: "100%",
     marginTop: "55px",
+    color: "whiteSmoke"
   },
 });
 
@@ -36,7 +37,7 @@ class Carosel extends React.Component {
     return (
       <Carousel autoplay>
         <div className={classes.carouselContainer}>
-          <b className={classes.textCSS}>
+          <b className={classes.textCSS} style={{color:"whiteSmoke"}}>
             {animateText("Welcome",samples.other.drawborder())}
           </b>
           <img
@@ -48,24 +49,9 @@ class Carosel extends React.Component {
         </div>
 
         <div>
-          <img
-            src={Drake01}
-            alt="carouselImage"
-            className={classes.imagesCSS}
-            height={450}
-          />
-        </div>
-
-        <div>
-          <img
-            src={Burna01}
-            alt="carouselImage"
-            className={classes.imagesCSS}
-            height={450}
-          />
-        </div>
-
-        <div>
+        <b className={classes.textCSS} style={{color:"whiteSmoke"}}>
+            {animateText("To Ace Wears",samples.other.drawborder())}
+          </b>
           <img
             src={Burna02}
             alt="carouselImage"

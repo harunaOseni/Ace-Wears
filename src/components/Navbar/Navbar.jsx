@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
-import logo from "../../assets/commerce.png";
+import logo from "../../assets/favicon.png";
 import { withStyles } from "@material-ui/core";
 import { fade } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -42,6 +42,7 @@ const styles = (theme) => ({
   },
   image: {
     marginRight: "10px",
+    marginBottom:"5px"
   },
   menuButton: {
     marginRight: theme.spacing(2),
