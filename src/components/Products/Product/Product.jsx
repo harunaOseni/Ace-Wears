@@ -28,16 +28,12 @@ const styles = theme => ({
         display: 'flex',
         justifyContent: 'space-between',
       },
-      overrides: {
-        MuiCardContent: {
-          root: {
-            padding: 0,
-            "&:last-child": {
-              paddingBottom: 0,
-           },
-          },
-        },
-      },
+      cardcontent: {
+        padding: 0,
+        "&:last-child": {
+          paddingBottom: 0
+        }
+      }
 });
 
 class Product extends React.Component {
