@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import React from "react";
 import Olamide01 from "../../assets/olamide01.jpg";
 import { withStyles } from "@material-ui/styles";
+import { Button } from "@material-ui/core";
 
 const styles = (theme) => ({
   carouselContainer: {
@@ -16,9 +17,20 @@ const styles = (theme) => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
     height: "400px",
-    fontSize: "50px",
-    width: "100%",
-    color: "w"
+    fontSize: "70px",
+    width: "600px",
+    fontFamily: "Niconne",
+    color: "white !important",
+    textShadow: "5px 5px #FFF6",
+  },
+  button: {
+    position: "absolute",
+    top: "84%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    "&:hover":{
+      color: "white"
+    }
   },
   imagesCSS: {
     objectFit: "fill",
@@ -37,8 +49,16 @@ class Carosel extends React.Component {
         <div className={classes.carouselContainer}>
           <div>
             <Typography className={classes.textCSS}>
-              Welcome, To Ace Wears
+              Welcome To Ace Wears
             </Typography>
+            <Button
+              variant="contained"
+              color="info"
+              className={classes.button}
+              onClick={() => window.location.replace("/#product")}
+            >
+              Shop Now
+            </Button>
           </div>
           <img
             src={Olamide01}

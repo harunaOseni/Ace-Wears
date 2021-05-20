@@ -96,7 +96,7 @@ class App extends React.Component {
               <Products
                 products={this.state.products}
                 addToCart={this.handleAddToCart}
-              />
+              /> 
             </Route>
             <Route exact path="/cart">
               <Cart

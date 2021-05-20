@@ -44,7 +44,7 @@ class Product extends React.Component {
     const { addToCart } = this.props;
 
     return (
-      <Card className={classes.root}>
+      <Card className={classes.root}  id="product">
         <CardMedia className={classes.media} image={product.media.source} title={product.name} />
         <CardContent>
           <div className={classes.cardContent}>
