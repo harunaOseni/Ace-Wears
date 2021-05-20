@@ -3,6 +3,8 @@ import { Navbar, Products, Cart, Carosel, Checkout } from "./components";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -82,6 +84,7 @@ class App extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
     
     return (
       <Router>

@@ -11,20 +11,26 @@ import { withStyles } from "@material-ui/core";
 
 const styles = (theme) => ({
   media: {
-    height: 260,
+    height: "200px",
+    paddingTop: '30%', // 16:9
+    paddingBottom: "40%"
   },
+
   cardContent: {
     display: "flex",
     justifyContent: "space-between",
   },
+
   cartActions: {
     justifyContent: "space-between",
   },
+
   buttons: {
     display: "flex",
     alignItems: "center",
   },
 });
+
 
 class CartItem extends React.Component {
   render() {

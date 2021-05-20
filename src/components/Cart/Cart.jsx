@@ -6,13 +6,10 @@ import CartItem from "./CartItem/CartItem";
 
 const styles = (theme) => ({
   toolbar: theme.mixins.toolbar,
-  title: {
-    marginTop: "5%",
-  },
   emptyButton: {
     minWidth: "150px",
     [theme.breakpoints.down("xs")]: {
-      marginBottom: "5px",
+      marginBottom: "3px",
     },
     [theme.breakpoints.up("xs")]: {
       marginRight: "20px",
@@ -26,7 +23,7 @@ const styles = (theme) => ({
   },
   cardDetails: {
     display: "flex",
-    marginTop: "10%",
+    marginTop: "3%",
     width: "100%",
     justifyContent: "space-between",
   },
@@ -65,7 +62,7 @@ class Cart extends React.Component {
             </Grid>
           ))}
         </Grid>
-        <div className={classes.cardDetails}>
+        <div className={classes.cardDetails} >
           <Typography variant="h4">
             Subtotal: {cart.subtotal.formatted_with_symbol}
           </Typography>
@@ -93,14 +90,16 @@ class Cart extends React.Component {
             </Button>
           </div>
         </div>
+        <hr/>
       </>
     );
 
     return (
       <Container>
         <div className={classes.toolbar} />
-        <Typography className={classes.title} variant="h3" gutterBottom>
+        <Typography className={classes.title} variant="h4" gutterBottom>
           Your Shopping Cart
+          <hr/>
         </Typography>
         {!cart.line_items.length ? renderEmptyCart : renderCart}
       </Container>

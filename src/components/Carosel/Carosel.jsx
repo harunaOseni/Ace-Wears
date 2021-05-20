@@ -1,12 +1,8 @@
-import { Carousel } from "antd";
+import { Carousel, Typography } from "antd";
 import "antd/dist/antd.css";
 import React from "react";
 import Olamide01 from "../../assets/olamide01.jpg";
-import Drake01 from "../../assets/drake01.jpg";
-import Burna01 from "../../assets/odogwu  03.jpg";
-import Burna02 from "../../assets/burna-boy-1.jpg";
 import { withStyles } from "@material-ui/styles";
-import { animateText, samples } from "react-punch";
 
 const styles = (theme) => ({
   carouselContainer: {
@@ -16,17 +12,19 @@ const styles = (theme) => ({
   },
   textCSS: {
     position: "absolute",
-    top: "85%",
+    top: "75%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     height: "400px",
-    fontSize: "50px"
+    fontSize: "50px",
+    width: "100%",
+    color: "w"
   },
   imagesCSS: {
     objectFit: "fill",
     width: "100%",
     marginTop: "55px",
-    color: "whiteSmoke"
+    color: "whiteSmoke",
   },
 });
 
@@ -37,23 +35,13 @@ class Carosel extends React.Component {
     return (
       <Carousel autoplay>
         <div className={classes.carouselContainer}>
-          <b className={classes.textCSS} style={{color:"whiteSmoke"}}>
-            {animateText("Welcome",samples.other.drawborder())}
-          </b>
+          <div>
+            <Typography className={classes.textCSS}>
+              Welcome, To Ace Wears
+            </Typography>
+          </div>
           <img
             src={Olamide01}
-            alt="carouselImage"
-            className={classes.imagesCSS}
-            height={450}
-          />
-        </div>
-
-        <div>
-        <b className={classes.textCSS} style={{color:"whiteSmoke"}}>
-            {animateText("To Ace Wears",samples.other.drawborder())}
-          </b>
-          <img
-            src={Burna02}
             alt="carouselImage"
             className={classes.imagesCSS}
             height={450}
