@@ -4,7 +4,7 @@ import Product from "../Products/Product/Product";
 import { withStyles } from "@material-ui/core";
 
 const styles = (theme) => ({
-  toolbar: theme.mixins.toolbar,
+  
   content: {
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(2.8),
@@ -19,7 +19,6 @@ class Products extends React.Component {
 
     return (
       <main className={classes.content}>
-        <div className={classes.toolbar} />
         <Grid container justify="center" spacing={4}>
           {products.map((product) => (
             <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>

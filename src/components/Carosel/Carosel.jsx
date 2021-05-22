@@ -18,7 +18,7 @@ const styles = (theme) => ({
     transform: "translate(-50%, -50%)",
     height: "400px",
     fontSize: "70px",
-    width: "600px",
+    width: "400px",
     fontFamily: "Niconne",
     color: "white !important",
     textShadow: "5px 5px #FFF6",

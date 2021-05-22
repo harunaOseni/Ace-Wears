@@ -7,6 +7,7 @@ import {
   CardContent,
   CardMedia,
 } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from "@material-ui/core";
 
 const styles = (theme) => ({
@@ -28,6 +29,8 @@ const styles = (theme) => ({
   buttons: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "space-between",
+    flex: 1
   },
 });
 
@@ -52,7 +55,7 @@ class CartItem extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
-          <div className={classes.buttons} style={{ flex: 1 }}>
+          <div className={classes.buttons}>
             <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity - 1)}>
               -
             </Button>
@@ -66,6 +69,7 @@ class CartItem extends React.Component {
             type="button"
             color="secondary"
             onClick={() => removeFromCart(item.id)} 
+            startIcon={<DeleteIcon />}
           >
             Remove
           </Button>

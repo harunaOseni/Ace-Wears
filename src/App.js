@@ -3,8 +3,6 @@ import { Navbar, Products, Cart, Carosel, Checkout } from "./components";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +21,7 @@ class App extends React.Component {
     const { data } = await commerce.products.list();
     this.setState({ products: data });
     this.fetchCart();
-  } 
+  }
 
   fetchCart() {
     commerce.cart
@@ -36,9 +34,9 @@ class App extends React.Component {
       });
   }
 
-  handleAddToCart(productId, quantity) {
+  handleAddToCart(productId, quantity, variantId) {
     commerce.cart
-      .add(productId, quantity)
+      .add(productId, quantity, variantId)
       .then((item) => {
         this.setState({ cart: item.cart });
       })
@@ -84,8 +82,6 @@ class App extends React.Component {
   }
 
   render() {
-    const {classes} = this.props
-    
     return (
       <Router>
         <div>
@@ -96,7 +92,7 @@ class App extends React.Component {
               <Products
                 products={this.state.products}
                 addToCart={this.handleAddToCart}
-              /> 
+              />
             </Route>
             <Route exact path="/cart">
               <Cart

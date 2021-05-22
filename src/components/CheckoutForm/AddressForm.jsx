@@ -68,7 +68,7 @@ const AddressForm = ({ checkoutToken }) => {
         shippingCountry,
         shippingSubdivision
       );
-  }, [shippingSubdivision]);
+  },[shippingSubdivision]);
 
   return (
     <>
@@ -91,7 +91,7 @@ const AddressForm = ({ checkoutToken }) => {
                 fullWidth
                 onChange={(e) => {
                   setShippingCountry(e.target.value);
-                }}
+                }} 
               >
                 {Object.entries(shippingCountries)
                   .map(([code, name]) => ({ id: code, label: name }))

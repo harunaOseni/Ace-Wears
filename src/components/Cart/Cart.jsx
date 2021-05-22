@@ -12,15 +12,18 @@ const styles = (theme) => ({
       marginBottom: "3px",
     },
     [theme.breakpoints.up("xs")]: {
-      marginRight: "20px",
+      marginRight: "15px",
+      justifyContent: "flex-end"
     },
   },
   checkoutButton: {
     minWidth: "150px",
-  },
+  }, 
+
   link: {
     textDecoration: "none",
   },
+
   cardDetails: {
     display: "flex",
     marginTop: "3%",
@@ -63,7 +66,7 @@ class Cart extends React.Component {
           ))}
         </Grid>
         <div className={classes.cardDetails} >
-          <Typography variant="h4">
+          <Typography variant="h5">
             Subtotal: {cart.subtotal.formatted_with_symbol}
           </Typography>
           <div>
