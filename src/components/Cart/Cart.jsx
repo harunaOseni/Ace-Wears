@@ -40,6 +40,8 @@ class Cart extends React.Component {
     const { emptyCart } = this.props;
     const { updateQuantity } = this.props;
 
+    console.log(cart);
+
     if (!cart.line_items) return "Loading";
 
     const renderEmptyCart = (

@@ -54,6 +54,9 @@ class CartItem extends React.Component {
             {item.line_total.formatted_with_symbol}
           </Typography>
         </CardContent>
+        <div style={{paddingLeft: "20px"}}> 
+          <Typography>{item.selected_options[0].option_name}</Typography>
+        </div> 
         <CardActions className={classes.cardActions}>
           <div className={classes.buttons}>
             <Button type="button" size="small" onClick={() => updateCartQuantity(item.id, item.quantity - 1)}>
