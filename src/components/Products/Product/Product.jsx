@@ -44,7 +44,7 @@ class Product extends React.Component {
   constructor(props){
     super(props); 
     this.state={
-      size: ""
+      size: "Size"
     }
     this.handleChangeSize = this.handleChangeSize.bind(this);
   }

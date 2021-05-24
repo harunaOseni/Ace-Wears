@@ -76,10 +76,13 @@ class Checkout extends React.Component {
       activeStep: 0,
       checkoutToken: null,
       cart: this.props.cart,
+      shippingData: {},
     };
     this.Form = this.Form.bind(this);
     this.Confirmation = this.Confirmation.bind(this);
-    // this.nextStep = this.nextStep.bind(this);
+    this.next = this.next.bind(this);
+    this.nextStep = this.nextStep.bind(this);
+    this.previousStep = this.previousStep.bind(this);
   }
 
   async componentDidMount() {
@@ -95,21 +98,39 @@ class Checkout extends React.Component {
       .catch((error) => {
         console.log("There was an error getting the Token, ", error);
       });
-  };
+  }
 
-  // nextStep() {
-  //   this.setState({
-  //     activeStep: this.state.activeStep + 1,
-  //   });
-  // } 
+  nextStep() {
+    this.setState({
+      activeStep: this.state.activeStep + 1,
+    });
+  }
+
+  previousStep() {
+    this.setState({
+      activeStep: this.state.previousStep - 1,
+    });
+  }
+
+  next(data) {
+    this.setState({
+      shippingData: data,
+    });
+    this.nextStep();
+  }
 
   Form = () => {
     return this.state.activeStep === 0 ? (
-      <AddressForm checkoutToken={this.state.checkoutToken} />
+      <AddressForm
+        checkoutToken={this.state.checkoutToken}
+        next={this.next}
+      />
     ) : (
-      <PaymentForm />
+      <PaymentForm shippingData={this.state.shippingData} previousStep={this.previousStep} next={this.next}/>
     );
   };
+
+  
   Confirmation = () => {
     return <div>This is the Confirmation page enjoy!</div>;
   };
