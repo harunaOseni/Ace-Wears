@@ -41,35 +41,26 @@ const styles = (theme) => ({
 });
 
 class Product extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      size: [],
-    };
-
-    // this.handleChange = this.handleChange.bind(this);
-    this.fetchVariant = this.fetchVariant.bind(this);
+  constructor(props){
+    super(props); 
+    this.state={
+      size: ""
+    }
+    this.handleChangeSize = this.handleChangeSize.bind(this);
   }
 
-  // handleChange(event) {
-  //   this.setState({
-  //     size: event.target.value,
-  //   });
-  // }
-
-  componentDidMount(){
-    this.fetchVariant();
-  }
-
-  fetchVariant(){
-    console.log(this.props.product.variant_groups[0])
+  handleChangeSize(event){
+    this.setState({
+      size: event.target.value
+    }); 
+    console.log("Hereis the size now", this.state.size);
   }
 
   render() {
     const { product } = this.props;
     const { classes } = this.props;
     const { addToCart } = this.props;
-  
+    
     return (
       <Card className={classes.root} id="product">
         <CardMedia
@@ -91,21 +82,22 @@ class Product extends React.Component {
           />
         </CardContent>
         <CardActions className={classes.cardActions}>
-          {/* <FormControl>
-            <InputLabel>Size</InputLabel>
-            <Select
-              value={this.state.size}
-              fullWidth
-              onChange={this.handleChange}
-            >
-             <MenuItem>
-             </MenuItem>
-            </Select> 
-          </FormControl> */}
+          <FormControl>
+            <InputLabel>{product.variant_groups[0].name}</InputLabel>
+            <Select labelId="size-select-label" id="size-select" value={this.state.size} onChange={this.handleChangeSize}> 
+            {
+              product.variant_groups[0].options.map((option)=>(
+                <MenuItem value={option.id}>
+                {option.name}
+                </MenuItem>
+              ))
+            }
+            </Select>
+          </FormControl>
           <IconButton
             arial-label="Add to Cart"
             onClick={() => {
-              addToCart(product.id, 1);
+              addToCart(product.id, 1, product.variant_groups[0].id, this.state.size);
             }}
           >
             <AddShoppingCart />

@@ -9,6 +9,7 @@ class App extends React.Component {
     this.state = {
       products: [],
       cart: {},
+      variantInfo: [],
     };
     this.fetchCart = this.fetchCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -34,15 +35,16 @@ class App extends React.Component {
       });
   }
 
-  handleAddToCart(productId, quantity, variantId) {
+  handleAddToCart(productId, quantity, variantGroupId, optionId) {
     commerce.cart
-      .add(productId, quantity, variantId)
+      .add(productId, quantity, {[variantGroupId]: optionId})
       .then((item) => {
         this.setState({ cart: item.cart });
       })
       .catch((error) => {
         console.error("There was an error adding the item to the cart", error);
       });
+      console.log(productId, quantity, variantGroupId, optionId);
   }
 
   handleUpdateCartQuantity(productId, quantity) {
@@ -57,6 +59,7 @@ class App extends React.Component {
           error
         );
       });
+      console.log(this.state.cart);
   }
 
   handleRemoveFromCart(productId) {
