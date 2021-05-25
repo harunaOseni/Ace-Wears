@@ -129,6 +129,7 @@ class Checkout extends React.Component {
         next={this.next}
         nextstep={this.nextStep}
         checkoutToken={this.state.checkoutToken} 
+        captureCheckout={this.props.captureCheckout}
       />
     );
   };

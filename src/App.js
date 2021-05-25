@@ -10,12 +10,16 @@ class App extends React.Component {
       products: [],
       cart: {},
       variantInfo: [],
+      order: {},
+      errorMessage: "",
     };
     this.fetchCart = this.fetchCart.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleUpdateCartQuantity = this.handleUpdateCartQuantity.bind(this);
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
     this.handleEmptyCart = this.handleEmptyCart.bind(this);
+    this.handleCaptureCheckout = this.handleCaptureCheckout.bind(this);
+    this.refreshCart = this.refreshCart.bind(this);
   }
 
   async componentDidMount() {
@@ -37,14 +41,14 @@ class App extends React.Component {
 
   handleAddToCart(productId, quantity, variantGroupId, optionId) {
     commerce.cart
-      .add(productId, quantity, {[variantGroupId]: optionId})
+      .add(productId, quantity, { [variantGroupId]: optionId })
       .then((item) => {
         this.setState({ cart: item.cart });
       })
       .catch((error) => {
         console.error("There was an error adding the item to the cart", error);
       });
-      console.log(productId, quantity, variantGroupId, optionId);
+    console.log(productId, quantity, variantGroupId, optionId);
   }
 
   handleUpdateCartQuantity(productId, quantity) {
@@ -59,7 +63,32 @@ class App extends React.Component {
           error
         );
       });
-      console.log(this.state.cart);
+    console.log(this.state.cart);
+  }
+
+  refreshCart() {
+    commerce.cart.refresh().then((newCart) => {
+      this.setState({
+        cart: newCart.cart,
+      });
+    });
+  }
+
+  handleCaptureCheckout(checkoutTokenId, newOrder) {
+    commerce.checkout
+      .capture(checkoutTokenId, newOrder)
+      .then((incomingOrder) => {
+        this.setState({
+          order: incomingOrder.order,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.data.error.message,
+        });
+      });
+
+    this.refreshCart();
   }
 
   handleRemoveFromCart(productId) {
@@ -106,7 +135,12 @@ class App extends React.Component {
               />
             </Route>
             <Route exact path="/checkout">
-              <Checkout cart={this.state.cart} />
+              <Checkout
+                cart={this.state.cart}
+                order={this.state.order}
+                captureCheckout={this.handleCaptureCheckout}
+                errorMessage={this.state.errorMessage}
+              />
             </Route>
           </Switch>
         </div>
