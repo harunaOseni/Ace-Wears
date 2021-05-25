@@ -1,14 +1,14 @@
 import React from "react"; 
+import { Typography, Button, Divider } from '@material-ui/core';
+import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import Review from "./Review"; 
 
-
-class PaymentForm extends React.Component{
-    render(){
-        return(
-            <div>
-                This Is The Payment Form Component
-            </div>
-        )
-    }
+const PaymentForm=({checkoutToken, nextStep, previousStep, shippingData})=>{
+    return(
+        <Review checkoutToken={checkoutToken}/>
+    )
 }
 
-export default PaymentForm; 
+
+export default PaymentForm;

@@ -121,16 +121,18 @@ class Checkout extends React.Component {
 
   Form = () => {
     return this.state.activeStep === 0 ? (
-      <AddressForm
-        checkoutToken={this.state.checkoutToken}
-        next={this.next}
-      />
+      <AddressForm checkoutToken={this.state.checkoutToken} next={this.next} />
     ) : (
-      <PaymentForm shippingData={this.state.shippingData} previousStep={this.previousStep} next={this.next}/>
+      <PaymentForm
+        shippingData={this.state.shippingData}
+        previousStep={this.previousStep}
+        next={this.next}
+        nextstep={this.nextStep}
+        checkoutToken={this.state.checkoutToken} 
+      />
     );
   };
 
-  
   Confirmation = () => {
     return <div>This is the Confirmation page enjoy!</div>;
   };
