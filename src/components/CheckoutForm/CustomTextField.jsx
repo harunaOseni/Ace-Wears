@@ -8,9 +8,11 @@ const CustomTextField = ({ name, label, required }) => {
     <Grid item xs={12} sm={6} md={6}>
       <>
         <Controller
+          render={({ field }) => (
+            <TextField {...field} label={label} fullWidth required />
+          )}
           control={control}
           name={name}
-          render={({ field }) => <TextField fullWidth label={label} required />}
         />
       </>
     </Grid>

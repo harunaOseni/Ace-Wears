@@ -35,6 +35,7 @@ const PaymentForm = ({
     if (error) {
       console.log("we have an error", error);
     } else {
+      console.log("Here is the shipping data",shippingData);
       const orderData = {
         line_items: checkoutToken.live.line_items,
         customer: {
@@ -58,9 +59,7 @@ const PaymentForm = ({
           },
         },
       };
-
       captureCheckout(checkoutToken.id, orderData);
-
       nextStep();
     }
   };

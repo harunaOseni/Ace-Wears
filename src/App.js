@@ -71,7 +71,6 @@ class App extends React.Component {
       this.setState({
         cart: newCart,
       });
-      console.log(newCart)
     });
   }
 
@@ -82,13 +81,14 @@ class App extends React.Component {
         this.setState({
           order: incomingOrder.order,
         });
+        console.log(this.state.order);
       })
       .catch((error) => {
         this.setState({
           errorMessage: error.data.error.message,
         });
+        console.log(this.state.errorMessage);
       });
-
     this.refreshCart();
   }
 

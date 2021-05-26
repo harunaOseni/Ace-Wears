@@ -116,6 +116,7 @@ class Checkout extends React.Component {
     this.setState({
       shippingData: data,
     });
+    console.log(data);
     this.nextStep();
   }
 
