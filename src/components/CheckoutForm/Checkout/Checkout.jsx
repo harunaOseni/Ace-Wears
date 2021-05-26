@@ -127,7 +127,7 @@ class Checkout extends React.Component {
         shippingData={this.state.shippingData}
         previousStep={this.previousStep}
         next={this.next}
-        nextstep={this.nextStep}
+        nextStep={this.nextStep}
         checkoutToken={this.state.checkoutToken} 
         captureCheckout={this.props.captureCheckout}
       />

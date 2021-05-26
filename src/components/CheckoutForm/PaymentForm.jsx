@@ -19,7 +19,11 @@ const PaymentForm = ({
 }) => {
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
-    if (!stripe || !elements) return;
+    if (!stripe || !elements) {
+      if (!stripe) console.log("No stripe!");
+      if (!elements) console.log("No elements!");
+      return;
+    };
 
     const cardElement = elements.getElement(CardElement);
 
@@ -39,6 +43,7 @@ const PaymentForm = ({
           email: shippingData.email,
         },
         shipping: {
+          name: "Primary",
           street: shippingData.address1,
           town_city: shippingData.city,
           county_state: shippingData.shippingSubdivision,
@@ -53,7 +58,7 @@ const PaymentForm = ({
           },
         },
       };
-      
+
       captureCheckout(checkoutToken.id, orderData);
 
       nextStep();

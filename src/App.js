@@ -69,8 +69,9 @@ class App extends React.Component {
   refreshCart() {
     commerce.cart.refresh().then((newCart) => {
       this.setState({
-        cart: newCart.cart,
+        cart: newCart,
       });
+      console.log(newCart)
     });
   }
 
