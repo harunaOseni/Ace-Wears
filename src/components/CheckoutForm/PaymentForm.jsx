@@ -64,7 +64,7 @@ const PaymentForm = ({
     }
   };
 
-  console.log(stripePromise);
+  console.log(stripePromise); 
   return (
     <>
       <Review checkoutToken={checkoutToken} />

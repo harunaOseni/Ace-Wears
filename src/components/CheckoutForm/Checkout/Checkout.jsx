@@ -136,7 +136,7 @@ class Checkout extends React.Component {
   };
 
   Confirmation = () => {
-    return <div>This is the Confirmation page enjoy!</div>;
+    return(<div>This is the Confirmation page enjoy!</div>)
   };
 
   render() {
