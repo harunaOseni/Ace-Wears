@@ -75,20 +75,20 @@ class App extends React.Component {
   }
 
   handleCaptureCheckout(checkoutTokenId, newOrder) {
-    commerce.checkout
-      .capture(checkoutTokenId, newOrder)
-      .then((incomingOrder) => {
-        this.setState({
-          order: incomingOrder.order,
-        });
-        console.log(this.state.order);
-      })
-      .catch((error) => {
-        this.setState({
-          errorMessage: error.data.error.message,
-        });
-        console.log(this.state.errorMessage);
-      });
+    // commerce.checkout
+    //   .capture(checkoutTokenId, newOrder)
+    //   .then((incomingOrder) => {
+    //     this.setState({
+    //       order: incomingOrder,
+    //     });
+    //     console.log(this.state.order);
+    //   })
+    //   .catch((error) => {
+    //     this.setState({
+    //       errorMessage: error.data.error.message,
+    //     });
+    //     console.log("Here is the error message: ", this.state.errorMessage);
+      // });
     this.refreshCart();
   }
 

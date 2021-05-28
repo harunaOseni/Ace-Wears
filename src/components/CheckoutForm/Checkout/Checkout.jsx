@@ -116,9 +116,9 @@ class Checkout extends React.Component {
     this.setState({
       shippingData: data,
     });
-    console.log(data);
+    console.log(this.state.shippingData);
     this.nextStep();
-  }
+  };
 
   Form = () => {
     return this.state.activeStep === 0 ? (
