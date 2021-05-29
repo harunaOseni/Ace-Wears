@@ -44,7 +44,7 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: "Size",
+      size: "",
     };
     this.handleChangeSize = this.handleChangeSize.bind(this);
   }
@@ -60,7 +60,7 @@ class Product extends React.Component {
     const { product } = this.props;
     const { classes } = this.props;
     const { addToCart } = this.props;
-    const {addToCartWithout} = this.props;
+    const { size } = this.state;
 
     return (
       <Card className={classes.root} id="product">
@@ -91,15 +91,9 @@ class Product extends React.Component {
               ))}
             </Select>
           </FormControl>
-          {product.selected_options.length === 0 ? (
+          {product.variant_groups.length > 0 && !size ? (
             <IconButton
-              arial-label="Add to Cart"
-              onClick={() => {
-                addToCartWithout(
-                  product.id,
-                  1
-                );
-              }}
+              disabled={true}
             >
               <AddShoppingCart />
             </IconButton>
