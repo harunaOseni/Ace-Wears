@@ -20,6 +20,8 @@ class App extends React.Component {
     this.handleEmptyCart = this.handleEmptyCart.bind(this);
     this.handleCaptureCheckout = this.handleCaptureCheckout.bind(this);
     this.refreshCart = this.refreshCart.bind(this);
+    this.handleAddToCartWithoutSelectedOptions =
+      this.handleAddToCartWithoutSelectedOptions.bind(this);
   }
 
   async componentDidMount() {
@@ -49,6 +51,19 @@ class App extends React.Component {
         console.error("There was an error adding the item to the cart", error);
       });
     console.log(productId, quantity, variantGroupId, optionId);
+  }
+
+  handleAddToCartWithoutSelectedOptions(productId, quantity) {
+    commerce.cart
+      .add(productId, quantity)
+      .then((item) => {
+        this.setState({
+          cart: item.cart,
+        });
+      })
+      .catch((error) => {
+        console.log("There was an error adding item(s) to the cart: ", error);
+      });
   }
 
   handleUpdateCartQuantity(productId, quantity) {
@@ -115,7 +130,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.order);
+    // console.log(this.state.order);
     return (
       <Router>
         <div>
@@ -126,6 +141,7 @@ class App extends React.Component {
               <Products
                 products={this.state.products}
                 addToCart={this.handleAddToCart}
+                addToCartWithout={this.handleAddToCartWithoutSelectedOptions}
               />
             </Route>
             <Route exact path="/cart">

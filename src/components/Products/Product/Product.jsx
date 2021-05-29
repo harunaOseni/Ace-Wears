@@ -41,18 +41,18 @@ const styles = (theme) => ({
 });
 
 class Product extends React.Component {
-  constructor(props){
-    super(props); 
-    this.state={
-      size: "Size"
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      size: "Size",
+    };
     this.handleChangeSize = this.handleChangeSize.bind(this);
   }
 
-  handleChangeSize(event){
+  handleChangeSize(event) {
     this.setState({
-      size: event.target.value
-    }); 
+      size: event.target.value,
+    });
     console.log("Here is the size: ", this.state.size);
   }
 
@@ -60,7 +60,8 @@ class Product extends React.Component {
     const { product } = this.props;
     const { classes } = this.props;
     const { addToCart } = this.props;
-    
+    const {addToCartWithout} = this.props;
+
     return (
       <Card className={classes.root} id="product">
         <CardMedia
@@ -84,24 +85,39 @@ class Product extends React.Component {
         <CardActions className={classes.cardActions}>
           <FormControl>
             <InputLabel>{product.variant_groups[0].name}</InputLabel>
-            <Select value={this.state.size} onChange={this.handleChangeSize}> 
-            {
-              product.variant_groups[0].options.map((option)=>(
-                <MenuItem value={option.id}>
-                {option.name} 
-                </MenuItem>
-              ))
-            }
+            <Select value={this.state.size} onChange={this.handleChangeSize}>
+              {product.variant_groups[0].options.map((option) => (
+                <MenuItem value={option.id}>{option.name}</MenuItem>
+              ))}
             </Select>
           </FormControl>
-          <IconButton
-            arial-label="Add to Cart"
-            onClick={() => {
-              addToCart(product.id, 1, product.variant_groups[0].id, this.state.size);
-            }}
-          >
-            <AddShoppingCart />
-          </IconButton>
+          {product.selected_options.length === 0 ? (
+            <IconButton
+              arial-label="Add to Cart"
+              onClick={() => {
+                addToCartWithout(
+                  product.id,
+                  1
+                );
+              }}
+            >
+              <AddShoppingCart />
+            </IconButton>
+          ) : (
+            <IconButton
+              arial-label="Add to Cart"
+              onClick={() => {
+                addToCart(
+                  product.id,
+                  1,
+                  product.variant_groups[0].id,
+                  this.state.size
+                );
+              }}
+            >
+              <AddShoppingCart />
+            </IconButton>
+          )}
         </CardActions>
       </Card>
     );

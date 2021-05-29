@@ -16,13 +16,14 @@ class Products extends React.Component {
     const { products } = this.props;    
     const { classes } = this.props;
     const { addToCart } = this.props;
+    const {addToCartWithout} = this.props; 
 
     return (
       <main className={classes.content}>
         <Grid container justify="center" spacing={4}>
           {products.map((product) => (
             <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
-              <Product product={product} addToCart={addToCart}/> 
+              <Product product={product} addToCart={addToCart} addToCartWithout={addToCartWithout}/> 
             </Grid>
           ))}
         </Grid>
