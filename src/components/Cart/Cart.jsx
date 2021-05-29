@@ -1,27 +1,31 @@
 import React from "react";
 import { Container, Typography, Button, Grid } from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
+import { withStyles} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem/CartItem";
 
 const styles = (theme) => ({
   toolbar: theme.mixins.toolbar,
   emptyButton: {
-    minWidth: "150px",
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: "3px",
+    minWidth: '150px',
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '5px',
     },
-    [theme.breakpoints.up("xs")]: {
-      marginRight: "15px",
-      justifyContent: "flex-end"
+    [theme.breakpoints.up('xs')]: {
+      marginRight: '20px',
     },
   },
   checkoutButton: {
-    minWidth: "150px",
-  }, 
-
+    minWidth: '150px',
+  },
   link: {
     textDecoration: "none",
+  },
+
+  buttonGroup:{
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '25%',
+    },
   },
 
   cardDetails: {
@@ -67,11 +71,11 @@ class Cart extends React.Component {
             </Grid>
           ))}
         </Grid>
-        <div className={classes.cardDetails} >
+        <div className={classes.cardDetails}>
           <Typography variant="h5">
             Subtotal: {cart.subtotal.formatted_with_symbol}
           </Typography>
-          <div>
+          <div className={classes.buttonGroup}>
             <Button
               className={classes.emptyButton}
               size="large"
@@ -79,11 +83,11 @@ class Cart extends React.Component {
               variant="contained"
               color="secondary"
               onClick={() => emptyCart()}
-            >
+            > 
               Empty Cart
             </Button>
             <Button
-              className={classes.emptyButton}
+              className={classes.checkoutButton}
               size="large"
               type="button"
               variant="contained"
@@ -95,7 +99,7 @@ class Cart extends React.Component {
             </Button>
           </div>
         </div>
-        <hr/>
+        <hr />
       </>
     );
 
@@ -104,7 +108,7 @@ class Cart extends React.Component {
         <div className={classes.toolbar} />
         <Typography className={classes.title} variant="h4" gutterBottom>
           Your Shopping Cart
-          <hr/>
+          <hr />
         </Typography>
         {!cart.line_items.length ? renderEmptyCart : renderCart}
       </Container>

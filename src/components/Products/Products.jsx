@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, CssBaseline } from "@material-ui/core";
 import Product from "../Products/Product/Product";
 import { withStyles } from "@material-ui/core";
 

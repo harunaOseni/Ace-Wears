@@ -118,7 +118,7 @@ class Checkout extends React.Component {
     });
     console.log(this.state.shippingData);
     this.nextStep();
-  };
+  }
 
   Form = () => {
     return this.state.activeStep === 0 ? (
@@ -129,15 +129,35 @@ class Checkout extends React.Component {
         previousStep={this.previousStep}
         next={this.next}
         nextStep={this.nextStep}
-        checkoutToken={this.state.checkoutToken} 
+        checkoutToken={this.state.checkoutToken}
         captureCheckout={this.props.captureCheckout}
       />
     );
   };
 
-  Confirmation = () => {
-    return(<div>This is the Confirmation page enjoy!</div>)
-  };
+  Confirmation = () =>
+    this.props.order.customer ? (
+      <>
+        <div>
+          <Typography variant="h5">
+            Thank you for your purchase, {this.props.order.customer.firstname}{" "}
+            {this.props.order.customer.lastname}!
+          </Typography>
+          <Divider className={this.props.classes.divider} />
+          <Typography variant="subtitle2">
+            Order ref: {this.props.order.customer_reference}
+          </Typography>
+        </div>
+        <br />
+        <Button component={Link} variant="outlined" type="button" to="/">
+          Back to home
+        </Button>
+      </>
+    ) : (
+      <div className={this.props.classes.spinner}>
+        <CircularProgress />
+      </div>
+    );
 
   render() {
     const { classes } = this.props;
@@ -146,6 +166,7 @@ class Checkout extends React.Component {
 
     return (
       <>
+        <CssBaseline />
         <div className={classes.toolbar} />
         <main className={classes.layout}>
           <Paper className={classes.paper}>
