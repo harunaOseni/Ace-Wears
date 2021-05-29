@@ -27,6 +27,20 @@ const PaymentForm = ({
 
     const cardElement = elements.getElement(CardElement);
 
+    const lineItems = checkoutToken.live.line_items.reduce((obj, lineItem) => {
+      obj[lineItem.id] = {
+        quantity: lineItem.quantity,
+      }
+      if (lineItem.selected_options.length) {
+        obj[lineItem.id].selected_options = {
+          [lineItem.selected_options[0].group_id]: lineItem.selected_options[0].option_id
+        }
+      }
+      return obj
+    }, {}); 
+
+    console.log(lineItems);
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
@@ -37,21 +51,31 @@ const PaymentForm = ({
     } else {
       console.log("Here is the shipping data",shippingData);
       const orderData = {
-        line_items: checkoutToken.live.line_items,
+        line_items: lineItems,
         customer: {
           firstname: shippingData.firstName,
           lastname: shippingData.lastName,
           email: shippingData.email,
         },
         shipping: {
-          name: "Primary",
+          name: `${shippingData.firstName} ${shippingData.lastName} `,
           street: shippingData.address1,
           town_city: shippingData.city,
           county_state: shippingData.shippingSubdivision,
           postal_zip_code: shippingData.zip,
           country: shippingData.shippingCountry,
-        },
-        fulfillment: { shipping_method: shippingData.shippingOption },
+        }, 
+        fulfillment: { shipping_method: shippingData.shippingOption }, 
+
+        billing: {
+          name: 'Haruna Oseni',
+          street: '234 Fake St',
+          town_city: 'San Francisco',
+          county_state: 'US-CA',
+          postal_zip_code: '94103',
+          country: 'US'
+        }
+        ,
         payment: {
           gateway: "stripe",
           stripe: {

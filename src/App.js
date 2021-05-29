@@ -75,19 +75,22 @@ class App extends React.Component {
   }
 
   handleCaptureCheckout(checkoutTokenId, newOrder) {
-    commerce.checkout
+    return commerce.checkout
       .capture(checkoutTokenId, newOrder)
-      .then((response) => {
+      .then((resp) => {
+        this.refreshCart();
         this.setState({
-          order: response.order
+          order: resp,
         });
-      }).catch(error => {
-        this.setState({
-          errorMessage: error.data.error.message
-        })
+        return resp;
       })
-   this.refreshCart();
-  };
+      .catch((errorResponse) => {
+        this.setState({
+          errorMessage: errorResponse.data,
+        });
+        throw errorResponse.data;
+      });
+  }
 
   handleRemoveFromCart(productId) {
     commerce.cart
@@ -112,6 +115,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.order);
     return (
       <Router>
         <div>
