@@ -10,7 +10,7 @@ import {
   Divider,
   Button,
 } from "@material-ui/core";
-import { Link} from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
@@ -83,6 +83,7 @@ class Checkout extends React.Component {
     this.next = this.next.bind(this);
     this.nextStep = this.nextStep.bind(this);
     this.previousStep = this.previousStep.bind(this);
+    this.pushToHomePage = this.pushToHomePage.bind(this);
   }
 
   async componentDidMount() {
@@ -96,8 +97,12 @@ class Checkout extends React.Component {
         // console.log(this.state.checkoutToken);
       })
       .catch((error) => {
-        console.log("There was an error getting the Token, ", error);
+        this.pushToHomePage();
       });
+  }
+
+  pushToHomePage() {
+    this.props.history.push("/");
   }
 
   nextStep() {
@@ -193,4 +198,5 @@ class Checkout extends React.Component {
   }
 }
 
-export default withStyles(styles)(Checkout);
+const styleWithCheckout = withStyles(styles)(Checkout);
+export default withRouter(styleWithCheckout);
