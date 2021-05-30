@@ -10,7 +10,7 @@ import {
   Divider,
   Button,
 } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
@@ -93,7 +93,7 @@ class Checkout extends React.Component {
         this.setState({
           checkoutToken: token,
         });
-        console.log(this.state.checkoutToken);
+        // console.log(this.state.checkoutToken);
       })
       .catch((error) => {
         console.log("There was an error getting the Token, ", error);
@@ -116,7 +116,7 @@ class Checkout extends React.Component {
     this.setState({
       shippingData: data,
     });
-    console.log(this.state.shippingData);
+    // console.log(this.state.shippingData);
     this.nextStep();
   }
 

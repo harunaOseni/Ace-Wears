@@ -48,7 +48,7 @@ class App extends React.Component {
       .catch((error) => {
         console.error("There was an error adding the item to the cart", error);
       });
-    console.log(productId, quantity, variantGroupId, optionId);
+    // console.log(productId, quantity, variantGroupId, optionId);
   }
 
   handleUpdateCartQuantity(productId, quantity) {
@@ -63,7 +63,7 @@ class App extends React.Component {
           error
         );
       });
-    console.log(this.state.cart);
+    // console.log(this.state.cart);
   }
 
   refreshCart() {

@@ -48,7 +48,7 @@ const AddressForm = ({ checkoutToken, next}) => {
       checkoutTokenId,
       { country, region: stateProvince }
     );
-    console.log(options);
+    // console.log(options);
     setShippingOptions(options);
     setShippingOption(options[0].id);
   };

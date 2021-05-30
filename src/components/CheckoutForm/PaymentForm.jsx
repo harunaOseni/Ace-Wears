@@ -8,6 +8,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import Review from "./Review";
 
+
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({
@@ -39,7 +40,7 @@ const PaymentForm = ({
       return obj
     }, {}); 
 
-    console.log(lineItems);
+    // console.log(lineItems);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -49,7 +50,7 @@ const PaymentForm = ({
     if (error) {
       console.log("we have an error", error);
     } else {
-      console.log("Here is the shipping data",shippingData);
+      // console.log("Here is the shipping data",shippingData);
       const orderData = {
         line_items: lineItems,
         customer: {
@@ -88,7 +89,7 @@ const PaymentForm = ({
     }
   };
 
-  console.log(stripePromise); 
+  // console.log(stripePromise); 
   return (
     <>
       <Review checkoutToken={checkoutToken} />

@@ -53,7 +53,7 @@ class Product extends React.Component {
     this.setState({
       size: event.target.value,
     });
-    console.log("Here is the size: ", this.state.size);
+    // console.log("Here is the size: ", this.state.size);
   }
 
   render() {
@@ -83,7 +83,7 @@ class Product extends React.Component {
           />
         </CardContent>
         <CardActions className={classes.cardActions}>
-          <FormControl>
+          <FormControl style={{minWidth: 120}}>
             <InputLabel>{product.variant_groups[0].name}</InputLabel>
             <Select value={this.state.size} onChange={this.handleChangeSize}>
               {product.variant_groups[0].options.map((option) => (
