@@ -15,7 +15,13 @@
   left: 0px;
   text-align: center;
   font-family: sans-serif;
-  width: 65%;
+  width: 80%;
+}
+
+@media (min-width: 700px) {
+    .banner__intro {
+        width: 65%;
+    }
 }
 
 .banner__introText {
@@ -31,6 +37,7 @@
     color: white;
     background-color: rgba(128, 128, 128, 0.5);
     font-weight: 600;
+    padding: 10px;
 }
 
 .banner__intro > Button:hover {
