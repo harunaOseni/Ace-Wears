@@ -16,12 +16,11 @@ import { withStyles } from "@material-ui/styles";
 
 const styles = (theme) => ({
   root: {
-    // maxWidth: 345, original width style
     maxWidth: "100%",
   },
   media: {
     height: 0,
-    paddingTop: "56%", // 16:9
+    paddingTop: "56%",
     paddingBottom: "70%",
   },
   cardActions: {
@@ -53,7 +52,6 @@ class Product extends React.Component {
     this.setState({
       size: event.target.value,
     });
-    // console.log("Here is the size: ", this.state.size);
   }
 
   render() {

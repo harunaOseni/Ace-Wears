@@ -2,4 +2,37 @@
   background-image: url("https://manofmany.com/wp-content/uploads/2019/04/Top-50-Australian-Fashion-Clothing-Brands-Barney-Cools.jpg");
   height: 70vh;
   object-fit: contain;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.banner__intro {
+  position: absolute;
+  margin: auto;
+  top: 40%;
+  right: 0px;
+  left: 0px;
+  text-align: center;
+  font-family: sans-serif;
+  width: 65%;
+}
+
+.banner__introText {
+  color: white;
+  font-size: 3rem;
+  background-color: rgba(128, 128, 128, 0.7);
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+
+.banner__intro > Button {
+    color: white;
+    background-color: rgba(128, 128, 128, 0.5);
+    font-weight: 600;
+}
+
+.banner__intro > Button:hover {
+    background-color: rgba(128,128,128,0.7);
 }
